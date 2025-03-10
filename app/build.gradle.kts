@@ -2,6 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    // serialization
+    alias(libs.plugins.kotlin.serialization)
+
+    // ksp
+    alias(libs.plugins.kotlin.devtools.ksp)
+
+    // dagger hilt
+    alias(libs.plugins.android.dagger.hilt)
+
+    // room
+    alias(libs.plugins.androidx.room)
 }
 
 android {
@@ -37,6 +49,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // room
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -56,4 +73,22 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // stream
+    implementation(libs.bundles.stream)
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // dagger hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
+
+    // room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    implementation(libs.kotlinx.serialization.json)
 }

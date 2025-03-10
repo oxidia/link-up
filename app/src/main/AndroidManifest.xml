@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".CallMeApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,13 +14,21 @@
         android:theme="@style/Theme.Callme"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".core.presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Callme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter android:priority="1">
+                <action android:name="io.getstream.video.android.action.INCOMING_CALL" />
+                <action android:name="io.getstream.video.android.action.ONGOING_CALL" />
+                <action android:name="io.getstream.video.android.action.ACCEPT_CALL" />
+                <action android:name="io.getstream.video.android.action.OUTGOING_CALL" />
+                <action android:name="io.getstream.video.android.action.NOTIFICATION" />
             </intent-filter>
         </activity>
     </application>
